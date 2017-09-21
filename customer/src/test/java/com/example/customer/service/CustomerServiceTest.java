@@ -52,7 +52,7 @@ public class CustomerServiceTest {
 
     try {
       customerService.add(customersError);
-      Assert.assertFalse("Expected an exception to be thrown", condition:false);
+      Assert.assertFalse("Expected an exception to be thrown",false);
     } catch(DataIntegrityViolationException e) {
       System.out.println("Received an exception as expected.");
     }

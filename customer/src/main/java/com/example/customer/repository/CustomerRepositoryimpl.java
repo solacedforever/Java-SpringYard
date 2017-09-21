@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class CustomerRepositoryimpl implements CustomerRepository {
+public class CustomerRepositoryImpl implements CustomerRepository {
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
@@ -24,7 +24,7 @@ public class CustomerRepositoryimpl implements CustomerRepository {
 
   @Override
   public void add(Customer customer) {
-    jdbcTemplate.update(INSERT_SQL, customer.getFirstName(), customer.getLastName(), customer.getId());
+    jdbcTemplate.update(INSERT_SQL, customer.getFirstName(), customer.getLastName());
   }
 
   private final String SELECT_BY_ID_SQL = "SELECT * FROM customer WHERE id = ?";

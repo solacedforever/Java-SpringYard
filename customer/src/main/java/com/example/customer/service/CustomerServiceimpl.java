@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CustomerServiceimpl implements CustomerService {
+public class CustomerServiceImpl implements CustomerService {
 
   @Autowired
   CustomerRepository customerRepository;
@@ -19,7 +19,7 @@ public class CustomerServiceimpl implements CustomerService {
     customerRepository.add(customer);
   }
 
-
+  @Transactional
   @Override
   public void add(List<Customer> customers) {
     for (Customer aCustomer : customers) {
