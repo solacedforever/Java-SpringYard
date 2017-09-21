@@ -6,9 +6,7 @@ import java.util.List;
   public interface CustomerRepository {
     void add(Customer customer);
     Customer getById(int id);
-    List<Customer> get(Customer);
+    List<Customer> get(Customer customer);
     void update(Customer customer);
     void delete(int id);
   }
-
-}
