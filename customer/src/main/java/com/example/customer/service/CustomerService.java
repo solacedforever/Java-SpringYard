@@ -5,7 +5,7 @@ import com.example.customer.model.Customer;
 import java.util.List;
 
 public interface CustomerService {
-  void add(Customer customer);
+  Customer add(Customer customer);
   void add(List<Customer> customer);
   Customer getById(int id);
   List<Customer> get();
