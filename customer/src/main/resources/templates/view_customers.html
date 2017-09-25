@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-
 <head>
     <title>Customers</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,6 +10,7 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
+    <a href="/customers">Show all customers"</a>
 </div>
 <h1>List of Customers</h1>
 <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admins-only">Admins Only</a>
@@ -21,7 +21,9 @@
         <th>Last Name</th>
     </tr>
     <tr th:each="customer: ${listOfCustomers}">
-        <td align="center" th:text="${customer.id}" />
+        <td align="center">
+            <a th:text="${customer.id}" th:href="@{'/customer/' + ${customer.id}}"/>
+        </td>
         <td align="center" th:text="${customer.firstName}" />
         <td align="center" th:text="${customer.lastName}" />
     </tr>
