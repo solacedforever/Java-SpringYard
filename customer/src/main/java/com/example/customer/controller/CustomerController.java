@@ -3,6 +3,7 @@ package com.example.customer.controller;
 import com.example.customer.model.Customer;
 import com.example.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+@Controller
 public class CustomerController {
   @Autowired
   private CustomerService customerService;
@@ -21,6 +23,19 @@ public class CustomerController {
     model.addAttribute("listOfCustomers", customers);
     return "view_customers";
   }
+
+  @RequestMapping("/loggedout")
+  String logout(Model model) {
+    List<Customer> customers = customerService.get();
+    model.addAttribute("listOfCustomers", customers);
+    return "view_customers";
+  }
+
+  @GetMapping("/login")
+  String login() {
+    return "login";
+  }
+
 
   @GetMapping("/customer")
   String getCustomer(Model model) {
@@ -35,15 +50,16 @@ public class CustomerController {
     return "view_customers";
   }
 
+  @GetMapping("/admins-only")
+  String admins() {
+    return "administration";
+  }
+
+
   @ExceptionHandler(value = Exception.class)
   public String handleDefaultErrors(final Exception exception, Model model) {
     System.out.println(exception);
     model.addAttribute("message", exception.getMessage());
     return "error_message";
-  }
-
-  @GetMapping("/login")
-  String login() {
-    return "login";
   }
 }
